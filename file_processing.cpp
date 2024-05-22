@@ -45,45 +45,31 @@ bool File_processing::compare_files(const QString& file1, const QString& file2) 
 }
 
 void File_processing::file_srav() {
-    QString folder1 = QFileDialog::getExistingDirectory(nullptr, "Выберите первую папку", QDir::homePath());
-    QString folder2 = QFileDialog::getExistingDirectory(nullptr, "Выберите вторую папку", QDir::homePath());
-
     QStringList files1, files2;
 
     // Получение всех файлов из первой папки
-    QDir dir1(folder1);
+    QDir dir1(m_file_one);
     for (const QString& file : dir1.entryList(QDir::Files)) {
         files1.append(dir1.absoluteFilePath(file));
     }
 
     // Получение всех файлов из второй папки
-    QDir dir2(folder2);
+    QDir dir2(m_file_two);
     for (const QString& file : dir2.entryList(QDir::Files)) {
         files2.append(dir2.absoluteFilePath(file));
     }
 
     // Поиск дубликатов
-    QStringList duplicates;
     for (const QString& file1 : files1) {
         for (const QString& file2 : files2) {
             if (File_processing::compare_files(file1, file2)) {
-                duplicates.append(file1);
-                duplicates.append(file2);
+                setVector(file1);
                 break;
             }
         }
     }
 
-    // Удаление дубликатов из списка (оставляем только уникальные пути)
-    duplicates.removeDuplicates();
-
-    // Вывод списка дубликатов
-    if (!duplicates.isEmpty()) {
-        qDebug() << "Найдены следующие дубликаты:";
-        for (const QString& duplicate : duplicates) {
-            qDebug() << duplicate;
-        }
-    } else {
+    if (m_vector_Duplicates.isEmpty()) {
         qDebug() << "Дубликаты не найдены.";
     }
 }
@@ -112,4 +98,23 @@ void File_processing::setFile_two(const QString &newFile_two)
         return;
     m_file_two = newFile_two;
     emit file_twoChanged();
+}
+
+QVector<QString> File_processing::getvector_Duplicates() const
+{
+    return m_vector_Duplicates;
+}
+
+void File_processing::setVector_Duplicates(const QVector<QString> &newVector_Duplicates)
+{
+    if (m_vector_Duplicates == newVector_Duplicates)
+        return;
+    m_vector_Duplicates = newVector_Duplicates;
+    emit vector_DuplicatesChanged();
+}
+
+void File_processing::setVector(const QString &file)
+{
+    m_vector_Duplicates.append(file);
+    emit vector_DuplicatesChanged();
 }

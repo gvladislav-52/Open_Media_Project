@@ -71,7 +71,7 @@ ApplicationWindow {
 
             onClicked:
             {
-                file_proc.file_srav()
+                file_proc.openFile_one()
             }
         }
 
@@ -95,7 +95,7 @@ ApplicationWindow {
                     leftMargin: parent.width * 0.025
                 }
 
-                text: file_proc.file_one
+                text: file_proc.file_two
             }
         }
 
@@ -130,6 +130,33 @@ ApplicationWindow {
         }
     }
 
+    ToolButton {
+        id: button_res
+        Layout.alignment: Qt.AlignHCenter
+        Layout.preferredHeight: parent.height * 0.1
+        Layout.preferredWidth: parent.width * 0.6
+        background: Rectangle
+        {
+            color: button_res.pressed ? "black" : (button_res.hovered ? "darkgreen" : "lightgreen")
+            border.color: "black"
+            border.width: parent.height * 0.025
+        }
+
+        Text
+        {
+            anchors.centerIn: parent
+            text: "Result"
+            color: "gray"
+            font.pixelSize: parent.height * 0.4
+            font.bold: true
+        }
+
+        onClicked:
+        {
+            file_proc.file_srav()
+        }
+    }
+
     Rectangle
     {
         id: rect_data
@@ -156,7 +183,7 @@ ApplicationWindow {
 
             Repeater
             {
-                model: 100
+                model: file_proc.vector_Duplicates.length
 
                 Rectangle {
                     Layout.alignment: Qt.AlignHCenter
@@ -168,7 +195,7 @@ ApplicationWindow {
                     Text
                     {
                         anchors.centerIn: parent
-                        text: "Hello wsdfsdfsdforld!"
+                        text: file_proc.vector_Duplicates[index]
                     }
                 }
             }
