@@ -26,5 +26,5 @@
 Grachev Vladislav
 [GitHub - gvladislav-52](https://github.com/gvladislav-52)
 
-![the first screen](https://github.com/gvladislav-52/Open_Media_Project/tree/main/Screenshots/Screenshot from 2024-05-27 15-57-02.png)
-![the first screen](https://github.com/gvladislav-52/Open_Media_Project/tree/main/Screenshots/Screenshot from 2024-05-27 15-57-16.png)
+![the first screen](https://github.com/gvladislav-52/Open_Media_Project/blob/main/Screenshots/start.png)
+![the first screen](https://github.com/gvladislav-52/Open_Media_Project/blob/main/Screenshots/end.png)
