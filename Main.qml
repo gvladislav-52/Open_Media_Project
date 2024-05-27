@@ -39,7 +39,7 @@ ApplicationWindow {
                     left: parent.left
                     leftMargin: parent.width * 0.025
                 }
-
+                font.pixelSize: parent.height * 0.2
                 text: file_proc.file_one
             }
         }
@@ -94,7 +94,7 @@ ApplicationWindow {
                     left: parent.left
                     leftMargin: parent.width * 0.025
                 }
-
+                font.pixelSize: parent.height * 0.2
                 text: file_proc.file_two
             }
         }
@@ -137,7 +137,7 @@ ApplicationWindow {
         Layout.preferredWidth: parent.width * 0.6
         background: Rectangle
         {
-            color: button_res.pressed ? "black" : (button_res.hovered ? "darkgreen" : "lightgreen")
+            color: button_res.pressed ? "black" : (button_res.hovered ? "lightgreen" : "green")
             border.color: "black"
             border.width: parent.height * 0.025
         }
@@ -153,7 +153,7 @@ ApplicationWindow {
 
         onClicked:
         {
-            file_proc.file_srav()
+            file_proc.findDuplicates()
         }
     }
 
@@ -162,17 +162,17 @@ ApplicationWindow {
         id: rect_data
         Layout.fillHeight: true
         Layout.fillWidth: true
-        color: "white"
+        color: "lightgreen"
 
         ScrollView
         {
             anchors.fill: parent
             clip: true
             ScrollBar.vertical.policy: ScrollBar.AlwaysOff
-            contentHeight: scroll_id.height
+            contentHeight: column_data.height
 
         ColumnLayout {
-            id: scroll_id
+            id: column_data
             width: parent.width
             spacing: 0
             anchors
@@ -196,6 +196,7 @@ ApplicationWindow {
                     {
                         anchors.centerIn: parent
                         text: file_proc.vector_Duplicates[index]
+                        font.pixelSize: parent.height * 0.6
                     }
                 }
             }

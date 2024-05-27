@@ -13,35 +13,32 @@ public:
     File_processing();
 
     QString getfile_one() const;
-    void setFile_one(const QString &newFile_one);
-
     QString getfile_two() const;
-    void setFile_two(const QString &newFile_two);
-    bool compare_files(const QString& file1, const QString& file2);
-
     QVector<QString> getvector_Duplicates() const;
+
+    void setFile_one(const QString &newFile_one);
+    void setFile_two(const QString &newFile_two);
+    void setVector(const QString &file);
     void setVector_Duplicates(const QVector<QString> &newVector_Duplicates);
 
-    void setVector(const QString &file);
 signals:
-
     void file_oneChanged();
-
     void file_twoChanged();
-
     void vector_DuplicatesChanged();
 
 public slots:
     void openFile_one();
     void openFile_two();
-    void file_srav();
+    void findDuplicates();
+
 
 private:
     QString m_file_one;
     QString m_file_two;
 
-    QString get_file_hash(const QString& filename);
+    bool compareFiles(const QString& file1, const QString& file2);
     QVector<QString> m_vector_Duplicates;
+    void clearVector();
 };
 
 #endif // FILE_PROCESSING_H
